@@ -27,11 +27,9 @@ class App extends Component {
             this.setState({gameplay: newgp, arr: newarr});
             
             if (player === 'X')
-                this.setState({player: 'O'});
+                this.setState({player: 'O'}, () => {this.chk_winner()});
             else
-                this.setState({player: 'X'});
-            this.chk_winner();
-            console.log(this.state.winner);
+                this.setState({player: 'X'}, () => {this.chk_winner()});
         }
     }
 
