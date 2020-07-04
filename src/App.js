@@ -8,7 +8,7 @@ class App extends Component {
             player: 'X',
             gameplay: [],
             winner: '',
-            arr: [],
+            arr: []
         }
     }
 
@@ -33,6 +33,10 @@ class App extends Component {
         }
     }
 
+    reset_game = (event) => {
+        this.setState({player: 'X', gameplay: [], winner: '', arr: []});
+    }
+
     chk_winner = () => {
         const {gameplay, arr} = this.state;
         const winchk = gameplay.slice();
@@ -54,7 +58,7 @@ class App extends Component {
         const {player, gameplay, text, winner} = this.state;
         return (
             <div className='tc'>
-                <Display player={player} val={gameplay} clk={this.onClick} disp_text={text} winner={winner}/>
+                <Display player={'PLAYER ' + player} val={gameplay} clk={this.onClick} reset={this.reset_game} disp_text={text} winner={winner}/>
             </div>
         );
     }
