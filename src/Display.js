@@ -5,9 +5,9 @@ function Display({val, clk, player, winner, reset, TwoP, Bot}) {
       <div>
 	      <div className='bg-light-blue pa3'>
 	    	<h1 className='red'>Tic Tac Toe</h1>
-	    	<button onClick={Bot}>1-Player</button>
-	    	<button onClick={TwoP}>2-Player</button>
-	    	<button onClick={reset}>Reset</button>
+    		<button style={{margin: "5px", background: "black", color: "white"}} onClick={Bot}>1-Player</button>
+    		<button style={{margin: "5px", background: "black", color: "white"}} onClick={TwoP}>2-Player</button>
+    		<button style={{margin: "5px", background: "black", color: "white"}} onClick={reset}>Reset</button>
 	    	<h2 className='white' id='player'>{player}</h2>
 	    	<div className='flex justify-center'>
 	    		<button className='w4 h4' id='0' onClick={clk}><h1>{val[0]}</h1></button>

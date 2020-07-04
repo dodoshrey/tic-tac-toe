@@ -64,7 +64,6 @@ class App extends Component {
             newgp[i] = player;
             const newarr = arr.filter(this.distinct).slice();
             newarr.push(i);
-            console.log(arr.length);
             this.setState({gameplay: newgp, arr: newarr, player: 'X'}, () => {this.chk_winner()});
         }
     }
