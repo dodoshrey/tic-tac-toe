@@ -1,10 +1,12 @@
 import React from 'react';
 
-function Display({val, clk, player, winner, reset}) {
+function Display({val, clk, player, winner, reset, TwoP, Bot}) {
 	return (
       <div>
 	      <div className='bg-light-blue pa3'>
 	    	<h1 className='red'>Tic Tac Toe</h1>
+	    	<button onClick={Bot}>1-Player</button>
+	    	<button onClick={TwoP}>2-Player</button>
 	    	<button onClick={reset}>Reset</button>
 	    	<h2 className='white' id='player'>{player}</h2>
 	    	<div className='flex justify-center'>

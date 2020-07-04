@@ -8,7 +8,8 @@ class App extends Component {
             player: 'X',
             gameplay: [],
             winner: '',
-            arr: []
+            arr: [],
+            gametype: 'Bot',
         }
     }
 
@@ -17,7 +18,7 @@ class App extends Component {
     }
 
     onClick = (event) => {
-        const {player, gameplay, arr, winner} = this.state;
+        const {player, gameplay, arr, winner, gametype} = this.state;
         const i = event.currentTarget.id;
         if(!arr.includes(i) && !winner) {
             const newgp = gameplay.slice();
@@ -26,15 +27,46 @@ class App extends Component {
             newarr.push(i);
             this.setState({gameplay: newgp, arr: newarr});
             
-            if (player === 'X')
+            if (gametype === '2P') {
+                if (player === 'X')
+                    this.setState({player: 'O'}, () => {this.chk_winner()});
+                else
+                    this.setState({player: 'X'}, () => {this.chk_winner()});
+            } else {
                 this.setState({player: 'O'}, () => {this.chk_winner()});
-            else
-                this.setState({player: 'X'}, () => {this.chk_winner()});
+                if (winner)
+                    this.setState({player:'O'})
+                else if (!winner && arr.length < 7)
+                    this.setState({player: 'O'}, () => {this.bot_turn()});
+            }
         }
+    }
+
+    OnePlayer = (event) => {
+        this.setState({player: 'X', gameplay: [], winner: '', arr: [], gametype: 'Bot'});
+    }
+    
+    TwoPlayer = (event) => {
+        this.setState({player: 'X', gameplay: [], winner: '', arr: [], gametype: '2P'});
     }
 
     reset_game = (event) => {
         this.setState({player: 'X', gameplay: [], winner: '', arr: []});
+    }
+
+    bot_turn = (event) => {
+        const {player, gameplay, arr, winner} = this.state;
+        const i = (Math.floor(Math.random() * 9)).toString();
+        if (arr.includes(i)) {
+            this.bot_turn();
+        } else if (!arr.includes(i) && !winner) {
+            const newgp = gameplay.slice();
+            newgp[i] = player;
+            const newarr = arr.filter(this.distinct).slice();
+            newarr.push(i);
+            console.log(arr.length);
+            this.setState({gameplay: newgp, arr: newarr, player: 'X'}, () => {this.chk_winner()});
+        }
     }
 
     chk_winner = () => {
@@ -58,7 +90,7 @@ class App extends Component {
         const {player, gameplay, text, winner} = this.state;
         return (
             <div className='tc'>
-                <Display player={'PLAYER ' + player} val={gameplay} clk={this.onClick} reset={this.reset_game} disp_text={text} winner={winner}/>
+                <Display player={'PLAYER ' + player} val={gameplay} clk={this.onClick} Bot={this.OnePlayer} TwoP={this.TwoPlayer} reset={this.reset_game} disp_text={text} winner={winner}/>
             </div>
         );
     }
