@@ -256,25 +256,33 @@ class App extends Component {
         const {gameplay, arr} = this.state;
         const newgp = gameplay.slice();
         let i = -1;
-        if (arr.length === 3 && newgp[1][1] !== 'X')
-            i = 4;
-        else if (arr.length === 3 && newgp[1][1] === 'X') {
-            if (newgp[0][2] === 'O' && newgp[1][1] === 'X' && newgp[2][0] === 'X')
-                i = 0;
-            else if (newgp[0][2] === 'X' && newgp[1][1] === 'X' && newgp[2][0] === 'O')
-                i = 0;
-            else if (newgp[0][0] === 'O' && newgp[1][1] === 'X' && newgp[2][2] === 'X')
+        if (arr.length === 3 && newgp[1][1] === 'X' && newgp[0][0] === 'O' && newgp[2][2] === 'X')
                 i = 2;
-            else if (newgp[0][0] === 'X' && newgp[1][1] === 'X' && newgp[2][2] === 'O')
-                i = 2;
-        } else if (arr.length === 3 && newgp[1][1] === 'O') {
-            if (newgp[0][0] === 'X' && newgp[1][1] === 'O' && newgp[2][1] === 'X')
+        else if (arr.length === 3 && newgp[1][1] === 'O') {
+            if (newgp[0][0] === 'X' && newgp[2][1] === 'X')
                 i = 6;
-            else if (newgp[0][0] === 'X' && newgp[1][1] === 'O' && newgp[1][2] === 'X')
+            else if (newgp[0][0] === 'X' && newgp[1][2] === 'X')
                 i = 2;
-            else if (newgp[0][0] === 'X' && newgp[1][1] === 'O' && newgp[2][2] === 'X')
+            else if (newgp[0][0] === 'X' && newgp[2][2] === 'X')
                 i = 5;
-        } else {
+            else if (newgp[0][2] === 'X' && newgp[2][0] === 'X')
+                i = 3;
+            else if (newgp[0][2] === 'X' && newgp[2][1] === 'X')
+                i = 8;
+            else if (newgp[0][2] === 'X' && newgp[1][0] === 'X')
+                i = 0;
+            else if (newgp[2][0] === 'X' && newgp[0][1] === 'X')
+                i = 0;
+            else if (newgp[2][0] === 'X' && newgp[1][2] === 'X')
+                i = 8;
+            else if (newgp[2][2] === 'X' && newgp[0][1] === 'X')
+                i = 2;
+            else if (newgp[2][2] === 'X' && newgp[1][0] === 'X')
+                i = 6;
+        }
+        else if (arr.length === 3 && newgp[1][1] !== 'X' && newgp[1][1] !== 'O')
+            i = 4;
+        else {
             if (!newgp[0][0])
                 i = 0;
             else if (!newgp[0][2])
