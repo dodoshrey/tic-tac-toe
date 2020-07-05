@@ -4,11 +4,10 @@ function Display({val, clk, player, winner, reset, TwoP, Bot, BotHard}) {
 	return (
       <div>
 	      <div className='bg-pink pa3'>
-	    	<h1 style={{color: "darkblue", fontSize: "4em"}}>Tic Tac Toe</h1>
-    		<button style={{margin: "5px", background: "white"}} onClick={Bot}>Play With Bot</button>
-    		<button style={{margin: "5px", background: "white"}} onClick={TwoP}>Play With Partner</button>
-    		<br />
-    		<button style={{margin: "5px", background: "white"}} onClick={reset}>Reset Game</button>
+	    	<h1 style={{color: "darkblue", fontSize: "3.6em"}}>Tic Tac Toe</h1>
+    		<button style={{margin: "2px", background: "white"}} onClick={Bot}>Play With Bot</button>
+    		<button style={{margin: "2px", background: "white"}} onClick={TwoP}>Play With Partner</button>
+    		<button style={{margin: "2px", background: "white"}} onClick={reset}>Reset Game</button>
 	    	<h2 style={{color: "darkblue", fontSize: "2em"}} id='player'>{player}</h2>
 	    	<div className='flex justify-center'>
 	    		<button style={{background: "yellow"}} className='w4 h4' id='0' onClick={clk}><h1>{val[0][0]}</h1></button>
